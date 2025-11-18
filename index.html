@@ -96,31 +96,7 @@
 				display: none;
 			}
 
-			/* Skill progress bars */
-			.skill-bar {
-				background: rgba(255, 255, 255, 0.1);
-				height: 20px;
-				border-radius: 10px;
-				margin: 10px 0;
-				overflow: hidden;
-				position: relative;
-			}
 
-			.skill-progress {
-				height: 100%;
-				background: linear-gradient(90deg, #4CAF50, #2196F3);
-				border-radius: 10px;
-				transition: width 1.5s ease;
-				width: 0;
-			}
-
-			.skill-label {
-				position: absolute;
-				left: 10px;
-				top: 2px;
-				font-size: 12px;
-				z-index: 1;
-			}
 
 			/* Click counter */
 			.click-counter {
@@ -151,7 +127,6 @@
 
 		<div class="scroll-progress"></div>
 		<div class="secret-mode">🎉 Secret Mode Activated!</div>
-		<div class="click-counter">Clicks: <span id="clickCount">0</span></div>
 
 		<div id="wrapper">
 			<header id="header">
@@ -265,13 +240,6 @@
 		<script src="assets/js/main.js"></script>
 
 		<script>
-			// Click counter
-			let clickCount = 0;
-			document.addEventListener('click', () => {
-				clickCount++;
-				document.getElementById('clickCount').textContent = clickCount;
-			});
-
 			// Time on site tracker
 			let timeOnSite = 0;
 			setInterval(() => {
@@ -367,28 +335,13 @@
 			document.head.appendChild(style);
 			createParticles();
 
-			// Skill bars animation when scrolled into view
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach(entry => {
-					if (entry.isIntersecting) {
-						const progressBars = entry.target.querySelectorAll('.skill-progress');
-						progressBars.forEach(bar => {
-							bar.style.width = bar.dataset.progress + '%';
-						});
-					}
-				});
-			}, { threshold: 0.5 });
-
-			const skillsSection = document.getElementById('skills');
-			if (skillsSection) observer.observe(skillsSection);
-
 			// Fun facts that appear randomly
 			const funFacts = [
-				"💡 Did you know? Jon has worked with over 75 different AI models!",
-				"🎯 Fun fact: Jon managed teams of up to 40 people in leadership roles!",
-				"🌍 Jon has worked across multiple Caribbean countries!",
-				"🤖 Jon specializes in RAG systems and vectorized retrieval!",
-				"📊 Jon helped manage over 21,000 records at BYU!"
+				"💡 Did you know? I've worked with over 75 different AI models!",
+				"🎯 Fun fact: I managed teams of up to 40 people in leadership roles!",
+				"🌍 I've worked across multiple Caribbean countries!",
+				"🤖 I specialize in RAG systems and vectorized retrieval!",
+				"📊 I helped manage over 21,000 records at BYU!"
 			];
 
 			function showRandomFact() {
