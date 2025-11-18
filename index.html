@@ -12,120 +12,416 @@
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
-		
 		  gtag('config', 'G-77T3D7SJ0D');
 		</script>
 
+		<style>
+			/* Easter egg: Konami code activated state */
+			.konami-active #wrapper {
+				animation: rainbow 3s linear infinite;
+			}
+
+			@keyframes rainbow {
+				0% { filter: hue-rotate(0deg); }
+				100% { filter: hue-rotate(360deg); }
+			}
+
+			/* Cursor trail effect */
+			.cursor-trail {
+				position: fixed;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.5);
+				pointer-events: none;
+				z-index: 9999;
+				animation: trailFade 0.8s ease-out forwards;
+			}
+
+			@keyframes trailFade {
+				to {
+					transform: scale(2);
+					opacity: 0;
+				}
+			}
+
+			/* Floating particles background */
+			.particle {
+				position: fixed;
+				width: 4px;
+				height: 4px;
+				background: rgba(255, 255, 255, 0.3);
+				border-radius: 50%;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			/* Fun fact tooltip */
+			.fun-fact {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				background: rgba(0, 0, 0, 0.8);
+				color: white;
+				padding: 15px 20px;
+				border-radius: 10px;
+				max-width: 300px;
+				z-index: 1000;
+				cursor: pointer;
+				transition: transform 0.3s ease;
+			}
+
+			.fun-fact:hover {
+				transform: scale(1.05);
+			}
+
+			.fun-fact-close {
+				float: right;
+				margin-left: 10px;
+				cursor: pointer;
+				font-weight: bold;
+			}
+
+			/* Secret mode indicator */
+			.secret-mode {
+				position: fixed;
+				top: 10px;
+				right: 10px;
+				background: rgba(255, 215, 0, 0.2);
+				color: gold;
+				padding: 5px 10px;
+				border-radius: 5px;
+				font-size: 12px;
+				z-index: 1000;
+				display: none;
+			}
+
+			/* Skill progress bars */
+			.skill-bar {
+				background: rgba(255, 255, 255, 0.1);
+				height: 20px;
+				border-radius: 10px;
+				margin: 10px 0;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.skill-progress {
+				height: 100%;
+				background: linear-gradient(90deg, #4CAF50, #2196F3);
+				border-radius: 10px;
+				transition: width 1.5s ease;
+				width: 0;
+			}
+
+			.skill-label {
+				position: absolute;
+				left: 10px;
+				top: 2px;
+				font-size: 12px;
+				z-index: 1;
+			}
+
+			/* Click counter */
+			.click-counter {
+				position: fixed;
+				top: 10px;
+				left: 10px;
+				background: rgba(0, 0, 0, 0.7);
+				color: white;
+				padding: 10px;
+				border-radius: 5px;
+				font-size: 12px;
+				z-index: 1000;
+			}
+
+			/* Scroll progress bar */
+			.scroll-progress {
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 3px;
+				background: linear-gradient(90deg, #00d4ff, #ff00ff);
+				z-index: 10000;
+				transition: width 0.1s ease;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
+		<div class="scroll-progress"></div>
+		<div class="secret-mode">🎉 Secret Mode Activated!</div>
+		<div class="click-counter">Clicks: <span id="clickCount">0</span></div>
+
 		<div id="wrapper">
-
-				<header id="header">
-						<div>
-							<img src="images/IMG_8007.JPG" alt="Jon Stauffer" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; margin-bottom: 20px;" />
-						</div>
-						<div class="content">
-							<div class="inner">
-								
-								<h1>Jon Stauffer</h1>
-								<p>Product Manager & AI Delivery Specialist<br />
-								Building innovative solutions at the intersection of AI and business</p>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="#intro">About</a></li>
-								<li><a href="#experience">Experience</a></li>
-								<li><a href="#skills">Skills</a></li>
-								<li><a href="#contact">Contact</a></li>
-							</ul>
-						</nav>
-					</header>
-
-				<div id="main">
-
-						<article id="intro">
-								<h2 class="major">About Me</h2>
-								<span class="image main"><img src="images/IMG_3.jpg" alt="" /></span>
-								<p>I'm a Product Manager and AI Delivery Specialist with a passion for leveraging cutting-edge technology to solve real-world business problems. Currently pursuing my Master of Science in Information Systems at the University of Utah's Eccles School of Business, I bring hands-on experience in AI product development, cross-functional team leadership, and technical implementation.</p>
-								<p>My work spans multiple AI-powered products, from equipment rental tools to creative brief systems and chatbot platforms. I've worked with over 75 AI models from leading providers including OpenAI, Anthropic, Gemini, and Groq, always focusing on optimizing performance and delivering value to users.</p>
-								<p>With a background in both product management and web development, I bridge the gap between technical capabilities and business needs. Whether it's implementing Scrum methodologies, conducting customer interviews, or developing go-to-market strategies, I'm driven by the opportunity to create products that make a real impact.</p>
-							</article>
-
-						<article id="experience">
-								<h2 class="major">Experience</h2>
-								<span class="image main"><img src="images/IMG_1.jpg" alt="" /></span>
-								
-								<h3>Product Manager & Delivery Specialist</h3>
-								<p><strong>Enhanced AI</strong> | Oct 2024 – Present<br/>
-								Cottonwood Heights, UT</p>
-								<p>Leading multiple AI-powered projects including an equipment rental tool, advanced creative brief system with BigQuery historical analysis, and AI readiness chatbot used by 200+ employee companies. Managing development of chatbot platforms, vectorized retrieval systems using RAG, and AI-powered document generation tools.</p>
-								<p>Key achievements include leveraging 75+ AI models to optimize product performance, developing comprehensive go-to-market plans, and conducting customer interviews that led to successful conversions for a $1,000 course offering.</p>
-								
-								<h3>Web Developer</h3>
-								<p><strong>BYU OIT Privacy and Records Management</strong> | Jan 2023 – Sep 2024<br/>
-								Provo, UT</p>
-								<p>Collaborated with teams using Scrum development methods to build systems managing over 21,000 records. Contributed to BYU's AI Task Force, helping establish standards for training custom GPT models. Specialized in communicating technical concepts effectively to non-technical stakeholders.</p>
-								
-								<h3>Volunteer Representative</h3>
-								<p><strong>The Church of Jesus Christ of Latter-day Saints</strong> | Jul 2019 – Aug 2021<br/>
-								Riverside, CA & South Caribbean</p>
-								<p>Spent 18+ months in leadership positions managing teams of up to 40 people. Handled financial reporting for six Caribbean countries and participated in community service including weekly food drives during COVID-19.</p>
-							</article>
-
-						<article id="skills">
-								<h2 class="major">Skills & Education</h2>
-								<span class="image main"><img src="images/IMG_2.jpg" alt="" /></span>
-								
-								<h3>Technical Skills</h3>
-								<p><strong>Project Management:</strong> Scrum Certified with proficiency in Trello, ClickUp, and roadmap development</p>
-								<p><strong>Product Management:</strong> Figma, persona development, PRDs, story writing, and customer feedback analysis</p>
-								<p><strong>AI Knowledge:</strong> LLM training fundamentals with LoRA experience, Prompt Engineering, Agent Orchestration</p>
-								<p><strong>Databases:</strong> SQL, Excel, with expertise in Graph and Vector Database architecture</p>
-								<p><strong>Security:</strong> Linux OS, encryption, hashing, authentication, and XSS prevention controls</p>
-								<p><strong>Programming:</strong> C++, C#, JavaScript, HTML, TypeScript, and React</p>
-								
-								<h3>Education</h3>
-								<p><strong>Master of Science, Information Systems</strong> | Dec 2025<br/>
-								University of Utah - Eccles School of Business<br/>
-								<em>Concurrently pursuing Graduate Certificate in Operational Supply Chain</em></p>
-								
-								<p><strong>Bachelor of Science, Information Systems</strong> | Dec 2024<br/>
-								Brigham Young University - Marriott School of Business<br/>
-								<em>Academic Scholarship Fall 2022 and Winter 2023</em><br/>
-								Specialized courses: Project Management, Predictive Analytics, Machine Learning, Systems Analysis & Design, Data Communication</p>
-							</article>
-
-						<article id="contact">
-								<h2 class="major">Contact</h2>
-								<p>I'm always interested in discussing new opportunities, collaborations, or innovative projects. Feel free to reach out!</p>
-								
-								<p><strong>Email:</strong> stauffjon@gmail.com<br/>
-								<strong>Phone:</strong> ... <br/>
-								<strong>Location:</strong> Salt Lake City, Utah</p>
-								
-								<ul class="icons">
-									<li><a href="https://www.linkedin.com/in/jon-stauffer-is" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="mailto:stauffjon@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-							</article>
-
+			<header id="header">
+				<div>
+					<img src="images/IMG_8007.JPG" alt="Jon Stauffer" id="profilePic" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; margin-bottom: 20px; transition: transform 0.3s ease; cursor: pointer;" />
+				</div>
+				<div class="content">
+					<div class="inner">
+						<h1>Jon Stauffer</h1>
+						<p>Product Manager & AI Delivery Specialist<br />
+						Building innovative solutions at the intersection of AI and business</p>
 					</div>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="#intro">About</a></li>
+						<li><a href="#experience">Experience</a></li>
+						<li><a href="#skills">Skills</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+			</header>
 
-				<footer id="footer">
-						<p class="copyright">&copy; Jon Stauffer 2025</p>
-					</footer>
+			<div id="main">
+				<article id="intro">
+					<h2 class="major">About Me</h2>
+					<span class="image main"><img src="images/IMG_3.jpg" alt="" /></span>
+					<p>I'm a Product Manager and AI Delivery Specialist with a passion for leveraging cutting-edge technology to solve real-world business problems. Currently pursuing my Master of Science in Information Systems at the University of Utah's Eccles School of Business, I bring hands-on experience in AI product development, cross-functional team leadership, and technical implementation.</p>
+					<p>My work spans multiple AI-powered products, from equipment rental tools to creative brief systems and chatbot platforms. I've worked with over <span id="modelCount" style="cursor: pointer; text-decoration: underline;">75</span> AI models from leading providers including OpenAI, Anthropic, Gemini, and Groq, always focusing on optimizing performance and delivering value to users.</p>
+					<p>With a background in both product management and web development, I bridge the gap between technical capabilities and business needs. Whether it's implementing Scrum methodologies, conducting customer interviews, or developing go-to-market strategies, I'm driven by the opportunity to create products that make a real impact.</p>
+				</article>
 
+				<article id="experience">
+					<h2 class="major">Experience</h2>
+					<span class="image main"><img src="images/IMG_1.jpg" alt="" /></span>
+					
+					<h3>Product Manager & Delivery Specialist</h3>
+					<p><strong>Enhanced AI</strong> | Oct 2024 – Present<br/>
+					Cottonwood Heights, UT</p>
+					<p>Leading multiple AI-powered projects including an equipment rental tool, advanced creative brief system with BigQuery historical analysis, and AI readiness chatbot used by 200+ employee companies. Managing development of chatbot platforms, vectorized retrieval systems using RAG, and AI-powered document generation tools.</p>
+					<p>Key achievements include leveraging 75+ AI models to optimize product performance, developing comprehensive go-to-market plans, and conducting customer interviews that led to successful conversions for a $1,000 course offering.</p>
+					
+					<h3>Web Developer</h3>
+					<p><strong>BYU OIT Privacy and Records Management</strong> | Jan 2023 – Sep 2024<br/>
+					Provo, UT</p>
+					<p>Collaborated with teams using Scrum development methods to build systems managing over 21,000 records. Contributed to BYU's AI Task Force, helping establish standards for training custom GPT models. Specialized in communicating technical concepts effectively to non-technical stakeholders.</p>
+					
+					<h3>Volunteer Representative</h3>
+					<p><strong>The Church of Jesus Christ of Latter-day Saints</strong> | Jul 2019 – Aug 2021<br/>
+					Riverside, CA & South Caribbean</p>
+					<p>Spent 18+ months in leadership positions managing teams of up to 40 people. Handled financial reporting for six Caribbean countries and participated in community service including weekly food drives during COVID-19.</p>
+				</article>
+
+				<article id="skills">
+					<h2 class="major">Skills & Education</h2>
+					<span class="image main"><img src="images/IMG_2.jpg" alt="" /></span>
+					
+					<h3>Technical Skills</h3>
+					<p><strong>Project Management:</strong> Scrum Certified with proficiency in Trello, ClickUp, and roadmap development</p>
+					<div class="skill-bar"><div class="skill-progress" data-progress="95"></div><span class="skill-label">Project Management</span></div>
+					
+					<p><strong>Product Management:</strong> Figma, persona development, PRDs, story writing, and customer feedback analysis</p>
+					<div class="skill-bar"><div class="skill-progress" data-progress="90"></div><span class="skill-label">Product Management</span></div>
+					
+					<p><strong>AI Knowledge:</strong> LLM training fundamentals with LoRA experience, Prompt Engineering, Agent Orchestration</p>
+					<div class="skill-bar"><div class="skill-progress" data-progress="85"></div><span class="skill-label">AI & Machine Learning</span></div>
+					
+					<p><strong>Databases:</strong> SQL, Excel, with expertise in Graph and Vector Database architecture</p>
+					<div class="skill-bar"><div class="skill-progress" data-progress="80"></div><span class="skill-label">Database Management</span></div>
+					
+					<p><strong>Security:</strong> Linux OS, encryption, hashing, authentication, and XSS prevention controls</p>
+					<p><strong>Programming:</strong> C++, C#, JavaScript, HTML, TypeScript, and React</p>
+					
+					<h3>Education</h3>
+					<p><strong>Master of Science, Information Systems</strong> | Dec 2025<br/>
+					University of Utah - Eccles School of Business<br/>
+					<em>Concurrently pursuing Graduate Certificate in Operational Supply Chain</em></p>
+					
+					<p><strong>Bachelor of Science, Information Systems</strong> | Dec 2024<br/>
+					Brigham Young University - Marriott School of Business<br/>
+					<em>Academic Scholarship Fall 2022 and Winter 2023</em><br/>
+					Specialized courses: Project Management, Predictive Analytics, Machine Learning, Systems Analysis & Design, Data Communication</p>
+				</article>
+
+				<article id="contact">
+					<h2 class="major">Contact</h2>
+					<p>I'm always interested in discussing new opportunities, collaborations, or innovative projects. Feel free to reach out!</p>
+					
+					<p><strong>Email:</strong> <a href="mailto:stauffjon@gmail.com" id="emailLink">stauffjon@gmail.com</a><br/>
+					<strong>Phone:</strong> ... <br/>
+					<strong>Location:</strong> Salt Lake City, Utah</p>
+					
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/jon-stauffer-is" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+						<li><a href="mailto:stauffjon@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+				</article>
 			</div>
+
+			<footer id="footer">
+				<p class="copyright">&copy; Jon Stauffer 2025 | <span id="timeOnSite">Time on site: 0s</span></p>
+			</footer>
+		</div>
 
 		<div id="bg"></div>
 
 		<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
+		<script>
+			// Click counter
+			let clickCount = 0;
+			document.addEventListener('click', () => {
+				clickCount++;
+				document.getElementById('clickCount').textContent = clickCount;
+			});
+
+			// Time on site tracker
+			let timeOnSite = 0;
+			setInterval(() => {
+				timeOnSite++;
+				document.getElementById('timeOnSite').textContent = `Time on site: ${timeOnSite}s`;
+			}, 1000);
+
+			// Scroll progress bar
+			window.addEventListener('scroll', () => {
+				const scrollProgress = document.querySelector('.scroll-progress');
+				const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+				scrollProgress.style.width = scrollPercentage + '%';
+			});
+
+			// Profile picture spin on click
+			document.getElementById('profilePic').addEventListener('click', (e) => {
+				e.target.style.transform = 'rotate(360deg)';
+				setTimeout(() => {
+					e.target.style.transform = 'rotate(0deg)';
+				}, 300);
+			});
+
+			// Model count animation
+			let modelCounter = 0;
+			document.getElementById('modelCount').addEventListener('click', () => {
+				const target = 75;
+				const interval = setInterval(() => {
+					modelCounter++;
+					document.getElementById('modelCount').textContent = modelCounter;
+					if (modelCounter >= target) {
+						clearInterval(interval);
+						document.getElementById('modelCount').textContent = '75+';
+					}
+				}, 20);
+			});
+
+			// Cursor trail effect
+			let trailEnabled = false;
+			document.addEventListener('mousemove', (e) => {
+				if (trailEnabled) {
+					const trail = document.createElement('div');
+					trail.className = 'cursor-trail';
+					trail.style.left = e.pageX + 'px';
+					trail.style.top = e.pageY + 'px';
+					document.body.appendChild(trail);
+					setTimeout(() => trail.remove(), 800);
+				}
+			});
+
+			// Konami code easter egg (↑↑↓↓←→←→BA)
+			let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+			let konamiIndex = 0;
+			document.addEventListener('keydown', (e) => {
+				if (e.key === konamiCode[konamiIndex]) {
+					konamiIndex++;
+					if (konamiIndex === konamiCode.length) {
+						document.body.classList.add('konami-active');
+						document.querySelector('.secret-mode').style.display = 'block';
+						trailEnabled = true;
+						konamiIndex = 0;
+						setTimeout(() => {
+							document.body.classList.remove('konami-active');
+							document.querySelector('.secret-mode').style.display = 'none';
+							trailEnabled = false;
+						}, 10000);
+					}
+				} else {
+					konamiIndex = 0;
+				}
+			});
+
+			// Floating particles
+			function createParticles() {
+				for (let i = 0; i < 30; i++) {
+					const particle = document.createElement('div');
+					particle.className = 'particle';
+					particle.style.left = Math.random() * 100 + '%';
+					particle.style.top = Math.random() * 100 + '%';
+					particle.style.animation = `float ${5 + Math.random() * 10}s linear infinite`;
+					document.body.appendChild(particle);
+				}
+			}
+
+			const style = document.createElement('style');
+			style.textContent = `
+				@keyframes float {
+					0%, 100% { transform: translateY(0) translateX(0); }
+					25% { transform: translateY(-20px) translateX(10px); }
+					50% { transform: translateY(-40px) translateX(-10px); }
+					75% { transform: translateY(-20px) translateX(5px); }
+				}
+			`;
+			document.head.appendChild(style);
+			createParticles();
+
+			// Skill bars animation when scrolled into view
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const progressBars = entry.target.querySelectorAll('.skill-progress');
+						progressBars.forEach(bar => {
+							bar.style.width = bar.dataset.progress + '%';
+						});
+					}
+				});
+			}, { threshold: 0.5 });
+
+			const skillsSection = document.getElementById('skills');
+			if (skillsSection) observer.observe(skillsSection);
+
+			// Fun facts that appear randomly
+			const funFacts = [
+				"💡 Did you know? Jon has worked with over 75 different AI models!",
+				"🎯 Fun fact: Jon managed teams of up to 40 people in leadership roles!",
+				"🌍 Jon has worked across multiple Caribbean countries!",
+				"🤖 Jon specializes in RAG systems and vectorized retrieval!",
+				"📊 Jon helped manage over 21,000 records at BYU!"
+			];
+
+			function showRandomFact() {
+				const fact = funFacts[Math.floor(Math.random() * funFacts.length)];
+				const factDiv = document.createElement('div');
+				factDiv.className = 'fun-fact';
+				factDiv.innerHTML = `<span class="fun-fact-close">✕</span>${fact}`;
+				document.body.appendChild(factDiv);
+				
+				factDiv.querySelector('.fun-fact-close').addEventListener('click', () => {
+					factDiv.remove();
+				});
+
+				setTimeout(() => factDiv.remove(), 8000);
+			}
+
+			// Show a fun fact after 10 seconds and then every 30 seconds
+			setTimeout(() => {
+				showRandomFact();
+				setInterval(showRandomFact, 30000);
+			}, 10000);
+
+			// Email link copy functionality
+			document.getElementById('emailLink').addEventListener('click', (e) => {
+				e.preventDefault();
+				navigator.clipboard.writeText('stauffjon@gmail.com').then(() => {
+					const originalText = e.target.textContent;
+					e.target.textContent = '✓ Copied!';
+					setTimeout(() => {
+						e.target.textContent = originalText;
+					}, 2000);
+				});
+			});
+		</script>
 	</body>
 </html>
