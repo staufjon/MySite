@@ -289,7 +289,6 @@
 				}
 			});
 
-			// Konami code easter egg (↑↑↓↓←→←→BA)
 			let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 			let konamiIndex = 0;
 			document.addEventListener('keydown', (e) => {
@@ -311,7 +310,6 @@
 				}
 			});
 
-			// Floating particles
 			function createParticles() {
 				for (let i = 0; i < 30; i++) {
 					const particle = document.createElement('div');
@@ -335,13 +333,12 @@
 			document.head.appendChild(style);
 			createParticles();
 
-			// Fun facts that appear randomly
 			const funFacts = [
-				"💡 Did you know? I've worked with over 75 different AI models!",
-				"🎯 Fun fact: I managed teams of up to 40 people in leadership roles!",
-				"🌍 I've worked across multiple Caribbean countries!",
-				"🤖 I specialize in RAG systems and vectorized retrieval!",
-				"📊 I helped manage over 21,000 records at BYU!"
+				"Did you know? I've worked with over 75 different AI models!",
+				"Fun fact: I managed teams of up to 40 people in leadership roles!",
+				"I've worked across multiple Caribbean countries!",
+				"I specialize in RAG systems and vectorized retrieval!",
+				"I helped manage over 21,000 records at BYU!"
 			];
 
 			function showRandomFact() {
@@ -358,13 +355,11 @@
 				setTimeout(() => factDiv.remove(), 8000);
 			}
 
-			// Show a fun fact after 10 seconds and then every 30 seconds
 			setTimeout(() => {
 				showRandomFact();
 				setInterval(showRandomFact, 30000);
 			}, 10000);
 
-			// Email link copy functionality
 			document.getElementById('emailLink').addEventListener('click', (e) => {
 				e.preventDefault();
 				navigator.clipboard.writeText('stauffjon@gmail.com').then(() => {
@@ -378,3 +373,4 @@
 		</script>
 	</body>
 </html>
+
